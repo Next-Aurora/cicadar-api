@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Next-Aurora/cicadar-api/compare/v1.0.0...v1.1.0) (2026-10-29)
+
+
+### Features
+
+* 提供内部鉴权存储，并用 SQL 脚本建表 ([ccf706c](https://github.com/Next-Aurora/cicadar-api/commit/ccf706ca8ff1e425a18c3aee4692d0a5315eebfa))
+
 # 1.0.0 (2026-10-29)
 
 
