@@ -1,0 +1,36 @@
+# 统一 Stack：Portainer CI 与本地 docker compose 共用
+# 镜像不写死在文件里：部署时用 Portainer 栈变量或 shell 传入
+# - IMAGE_URI：完整镜像地址（CI 注入）
+services:
+  api:
+    image: ${IMAGE_URI}
+    container_name: cicadar-api
+    ports:
+      - "${API_PORT:-127.0.0.1:8080}:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8080
+    networks:
+      - cicadar-api-network
+    restart: unless-stopped
+    deploy:
+      update_config:
+        order: start-first
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "curl",
+          "-fsS",
+          "http://127.0.0.1:8080/health",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  cicadar-api-network:
+    name: cicadar-api-network
+    driver: bridge
+    external: false
