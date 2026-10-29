@@ -5,6 +5,8 @@ services:
   api:
     image: ${IMAGE_URI}
     container_name: cicadar-api
+    # 公网：宿主机 Nginx api.cicadar.cn → 本机 8080（cicada 仓库 scripts/nginx/cicadar-api.conf）。
+    # 该入口不转发 /internal/。站点容器走 host.docker.internal:8080。
     ports:
       - "${API_PORT:-127.0.0.1:8080}:8080"
     extra_hosts:
