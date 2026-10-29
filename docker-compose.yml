@@ -7,9 +7,13 @@ services:
     container_name: cicadar-api
     ports:
       - "${API_PORT:-127.0.0.1:8080}:8080"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__Cicada=${CONNECTION_STRING:-}
+      - InternalAuth__Token=${INTERNAL_AUTH_TOKEN:-}
     networks:
       - cicadar-api-network
     restart: unless-stopped

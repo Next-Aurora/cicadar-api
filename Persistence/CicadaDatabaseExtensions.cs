@@ -14,6 +14,7 @@ public static class CicadaDatabaseExtensions
 
         services.AddDbContext<CicadaDbContext>(options =>
             options.UseMySql(connectionString, new MySqlServerVersion(CicadaDbContext.MySqlVersion)));
+        services.AddScoped<AuthStore>();
 
         return services;
     }

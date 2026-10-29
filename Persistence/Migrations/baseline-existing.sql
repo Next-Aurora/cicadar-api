@@ -1,6 +1,7 @@
--- 库已经由前端 Prisma 建过表时执行本文件。
--- 不要对这种库运行 `dotnet ef database update`，否则会再次 CREATE TABLE。
+-- 库已经由前端 Prisma 建过表时执行本文件。不需要安装 .NET。
+-- 不要对这种库执行 InitialAuthSchema.sql，否则会再次 CREATE TABLE。
 -- 本文件只把初始迁移记成已应用，不改现有表。
+--   mysql -h127.0.0.1 -u用户 -p 库名 < Persistence/Migrations/baseline-existing.sql
 
 CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
     `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
