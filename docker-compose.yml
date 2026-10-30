@@ -6,7 +6,7 @@ services:
     image: ${IMAGE_URI}
     container_name: cicadar-api
     # 公网：宿主机 Nginx api.cicadar.cn → 本机 8080（cicada 仓库 scripts/nginx/cicadar-api.conf）。
-    # 该入口不转发 /internal/。站点容器走 host.docker.internal:8080。
+    # 该入口不转发 /internal/。站点容器在 cicada-internal 网络上访问 http://cicadar-api:8080。
     ports:
       - "${API_PORT:-127.0.0.1:8080}:8080"
     extra_hosts:
@@ -18,6 +18,7 @@ services:
       - InternalAuth__Token=${INTERNAL_AUTH_TOKEN:-}
     networks:
       - cicadar-api-network
+      - cicada-internal
     restart: unless-stopped
     deploy:
       update_config:
@@ -40,3 +41,7 @@ networks:
     name: cicadar-api-network
     driver: bridge
     external: false
+  # 与站点、mysql 容器互通。服务器上先执行一次：docker network create cicada-internal
+  cicada-internal:
+    name: cicada-internal
+    external: true
