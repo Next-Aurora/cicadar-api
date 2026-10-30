@@ -41,7 +41,7 @@ networks:
     name: cicadar-api-network
     driver: bridge
     external: false
-  # 与站点、mysql 容器互通。服务器上先执行一次：docker network create cicada-internal
+  # 与站点、mysql 容器互通。网络由发布工作流或 mysql 的 deploy.sh 创建。
   cicada-internal:
     name: cicada-internal
     external: true
