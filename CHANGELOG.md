@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/Next-Aurora/cicadar-api/compare/v1.1.1...v1.1.2) (2026-10-30)
+
+
+### Bug Fixes
+
+* 加入共享网络，并把 Actions 升到 Node.js 24 ([52c8e58](https://github.com/Next-Aurora/cicadar-api/commit/52c8e586ecccec097cd5c80baa76ce9ca23a3c46))
+
 ## [1.1.1](https://github.com/Next-Aurora/cicadar-api/compare/v1.1.0...v1.1.1) (2026-10-29)
 
 
